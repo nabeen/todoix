@@ -230,7 +230,7 @@ packages:
     "ghcr.io/devcontainers/features/node:1": {
       "version": "24"
     },
-    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+    "ghcr.io/devcontainers-extra/features/pnpm:2": {}
   },
   "postCreateCommand": "pnpm install",
   "customizations": {
