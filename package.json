@@ -1,0 +1,14 @@
+{
+  "name": "todoix-monorepo",
+  "private": true,
+  "packageManager": "pnpm@10.19.0",
+  "engines": {
+    "node": "24.10.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "dev": "pnpm -C packages/cli dev"
+  }
+}
