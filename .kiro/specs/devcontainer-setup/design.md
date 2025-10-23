@@ -57,7 +57,7 @@ graph TD
 ### Technology Stack and Design Decisions
 
 - **コンテナベース**: `mcr.microsoft.com/devcontainers/base:ubuntu`をベースに、Devcontainer FeaturesでNode.js 24とpnpmを提供。
-- **パッケージマネージャ**: `ghcr.io/devcontainers-contrib/features/pnpm:2`でpnpmをインストールし、postCreateで`pnpm install`を自動実行。
+- **パッケージマネージャ**: `ghcr.io/devcontainers-extra/features/pnpm:2`でpnpmをインストールし、postCreateで`pnpm install`を自動実行。
 - **鍵管理依存**: `libsecret-1-0`、`libsecret-1-dev`、`gnome-keyring`をAPTで導入し、keytarのビルドと実行を確実化。
 - **認証情報マウント**: `mounts`オプションで`${localEnv:HOME}/.codex`を読み書き可能で`/home/vscode/.codex`へバインドし、必要に応じて`CODEX_CONFIG_DIR`などの環境変数で上書きすることでホストの`.codex`ディレクトリ全体を再利用。
 - **ドキュメント**: `README.md`にDevcontainer拡張導入と起動手順、初回ビルド時の留意点を追記。
@@ -67,7 +67,7 @@ graph TD
 - **Decision**: Devcontainer FeaturesでNode.jsとpnpmを導入する  
   **Context**: Node.js 24とpnpmを素早く提供し、バージョン管理を簡素化する必要がある。  
   **Alternatives**: 1) Dockerfile内でNode.jsとpnpmを手動インストール、2) nvm経由でNode.jsを導入、3) ホストマシンに依存。  
-  **Selected Approach**: Devcontainer Features (`ghcr.io/devcontainers/features/node:1`と`ghcr.io/devcontainers-contrib/features/pnpm:2`) を指定し、バージョン管理と更新を標準化。  
+  **Selected Approach**: Devcontainer Features (`ghcr.io/devcontainers/features/node:1`と`ghcr.io/devcontainers-extra/features/pnpm:2`) を指定し、バージョン管理と更新を標準化。  
   **Rationale**: Devcontainer FeaturesはMicrosoftメンテナンスの標準手段であり、設定が簡潔で再利用性が高い。  
   **Trade-offs**: Feature取得に外部ネットワークが必要となるが、Devcontainer標準フローのため許容。
 
@@ -122,7 +122,7 @@ graph TD
   },
   "features": {
     "ghcr.io/devcontainers/features/node:1": { "version": "24" },
-    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+    "ghcr.io/devcontainers-extra/features/pnpm:2": {}
   },
   "postCreateCommand": "pnpm install",
   "customizations": {
