@@ -11,6 +11,15 @@ ensure_codex_cli() {
   npm install -g @openai/codex
 }
 
+ensure_pnpm_version() {
+  if command -v corepack >/dev/null 2>&1; then
+    echo "[corepack] Preparing pnpm@10.19.0"
+    corepack prepare pnpm@10.19.0 --activate
+  else
+    echo "[corepack] corepack が見つかりません。pnpm@10.19.0 を手動でインストールしてください。"
+  fi
+}
+
 maybe_install_dependencies() {
   if [[ -f package.json || -f pnpm-workspace.yaml ]]; then
     echo "[pnpm] Installing workspace dependencies"
@@ -21,4 +30,5 @@ maybe_install_dependencies() {
 }
 
 ensure_codex_cli
+ensure_pnpm_version
 maybe_install_dependencies
